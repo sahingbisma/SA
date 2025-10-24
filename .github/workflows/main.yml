@@ -1,4 +1,4 @@
-name: SA
+name: NA
 
 
 
@@ -10,7 +10,7 @@ on:
 
 jobs:
 
-  SA:
+  rdp:
 
     runs-on: windows-latest
 
@@ -62,23 +62,23 @@ jobs:
 
           $securePass = ConvertTo-SecureString $password -AsPlainText -Force
 
-          if (-not (Get-LocalUser -Name "sa1" -ErrorAction SilentlyContinue)) {
+          if (-not (Get-LocalUser -Name "na1" -ErrorAction SilentlyContinue)) {
 
-              New-LocalUser -Name "sa1" -Password $securePass -AccountNeverExpires
+              New-LocalUser -Name "na1" -Password $securePass -AccountNeverExpires
 
           }
 
-          Add-LocalGroupMember -Group "Administrators" -Member "sa1" -ErrorAction SilentlyContinue
+          Add-LocalGroupMember -Group "Administrators" -Member "na1" -ErrorAction SilentlyContinue
 
-          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "sa1" -ErrorAction SilentlyContinue
-
-          
-
-          echo "RDP_CREDS=User: sa1 | Pass: $Password" >> $env:GITHUB_ENV
+          Add-LocalGroupMember -Group "Remote Desktop Users" -Member "na1" -ErrorAction SilentlyContinue
 
           
 
-          if (-not (Get-LocalUser -Name "sa1")) {
+          echo "RDP_CREDS=User: na1 | Pass: $Password" >> $env:GITHUB_ENV
+
+          
+
+          if (-not (Get-LocalUser -Name "na1")) {
 
               Write-Error "User creation failed"
 
